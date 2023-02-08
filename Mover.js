@@ -7,6 +7,7 @@ class Mover {
         this.width = config.width;
         this.travelTime = config.travelTime;
         this.curveSpeed = config.curveSpeed;
+        this.turnAvoidance = config.turnAvoidance;
         this.angle = config.angle;
         this.angleSpeed = config.angleSpeed;
         this.hue = config.hue;
@@ -16,7 +17,7 @@ class Mover {
     }
 
     drawMover() {
-        this.height = random(8, 24);
+        this.height = random(6, 20);
         this.width = random(1, 6);
         this.alpha = random(0.01, 0.5);
         this.travelTime++;
@@ -43,7 +44,7 @@ class Mover {
         if(this.travelTime > 100) {
             this.changeDirection();
             this.travelTime = 0;
-            random() < 0.5 ? this.draw = true : this.draw = false;
+            random() < 1 ? this.draw = true : this.draw = false;
         }
             
         push();
@@ -52,12 +53,14 @@ class Mover {
         rotate(this.velocity.heading());
 
         if(this.draw) {
-            fill(random(this.hue - 40, this.hue + 40), random(30, 70), random(40, 100), this.alpha);
+            fill(random(this.hue - 50, this.hue + 50), random(20, 70), random(60, 100), this.alpha);
             rect(0, 0, this.width, this.height);
-            fill(random(this.hue - 40, this.hue + 40), random(30, 60), random(60, 100), this.alpha / 2);
+            fill(random(this.hue - 50, this.hue + 50), random(20, 60), random(70, 100), this.alpha / 2);
             rect(0, 0, this.width / 2, this.height * 2);
-            fill(random(this.hue - 40, this.hue + 40), random(30, 50), random(80, 100), this.alpha / 4);
+            fill(random(this.hue - 50, this.hue + 50), random(20, 50), random(80, 100), this.alpha / 4);
             rect(0, 0, this.width / 2, this.height * 4);
+            fill(random(this.hue - 50, this.hue + 50), random(20, 40), random(80, 100), this.alpha / 6);
+            rect(0, 0, this.width / 2, this.height * 8);
         }
 
         pop();
@@ -119,7 +122,7 @@ class Mover {
 
         //if heading up or down, go left or right
         else if(this.velocity.x == 0) {
-            if(random() < 0.6) {
+            if(random() < this.turnAvoidance) {
                 return
             } else {
                 this.newVelocity.x = random() < 0.5 ? -1 : 1;
@@ -128,7 +131,7 @@ class Mover {
         }
         //if heading left or right, turn up or down
         else if(this.velocity.y == 0) {
-            if(random() < 0.6) {
+            if(random() < this.turnAvoidance) {
                 return
             } else {
                 this.newVelocity.y = random() < 0.5 ? -1 : 1;
