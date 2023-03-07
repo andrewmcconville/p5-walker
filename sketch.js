@@ -6,6 +6,7 @@ let movers = [];
 function setup() {
   console.log("setup()");
   createCanvas(windowWidth, windowHeight);
+  //pixelDensity(3.516); //4050 x 7200 px
   colorMode(HSL, 360, 100, 100, 1);  
   background(250, 10, 90);
   rectMode(CENTER);

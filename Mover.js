@@ -5,6 +5,7 @@ class Mover {
         this.newVelocity = config.newVelocity;
         this.height = config.height;
         this.width = config.width;
+        this.scale = 1;
         this.travelTime = config.travelTime;
         this.curveSpeed = config.curveSpeed;
         this.turnAvoidance = config.turnAvoidance;
@@ -17,8 +18,8 @@ class Mover {
     }
 
     drawMover() {
-        this.height = random(6, 20);
-        this.width = random(1, 6);
+        this.height = random(6, 20) * this.scale;
+        this.width = random(1, 6) * this.scale;
         this.alpha = random(0.01, 0.5);
         this.travelTime++;
 
