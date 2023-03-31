@@ -79,6 +79,8 @@ function setup() {
     alpha: random(0, 0.4),
     edgeDistance: 200,
   });
+
+  setInterval(refresh, 120000)
 }
 
 function draw() {
@@ -91,4 +93,8 @@ function draw() {
   movers.forEach(mover => {
     mover.drawMover();
   });
+}
+
+function refresh() {
+  window.location.reload();
 }
